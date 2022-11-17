@@ -8,7 +8,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(document_params)
-    # Scraping
+    # Parsing
     filepath = params["document"]["url"]
     table = CSV.parse(File.read(filepath), headers: true, col_sep: ";")
     # Calculer les indicateurs qui nous intéressent (directement ou en appelant des méthodes)
@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
   private
 
   def nb_buyers
-    # scraping
+    # Parsing
     filepath = params["document"]["url"]
     table = CSV.parse(File.read(filepath), headers: true, col_sep: ";")
     # créer un array avec les emails uniques
@@ -41,7 +41,7 @@ class DocumentsController < ApplicationController
   end
 
   def buyersage_average
-    # scraping
+    # Parsing
     filepath = params["document"]["url"]
     table = CSV.parse(File.read(filepath), headers: true, col_sep: ";")
     # convertir la colonne age en integer et compter les valeurs non vides
@@ -56,7 +56,7 @@ class DocumentsController < ApplicationController
   end
 
   def resaprice_average
-    # scraping
+    # Parsing
     filepath = params["document"]["url"]
     table = CSV.parse(File.read(filepath), headers: true, col_sep: ";")
     # convertir les prix en integer dans un nouvel array
